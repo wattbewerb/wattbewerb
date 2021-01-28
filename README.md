@@ -13,3 +13,10 @@ npm link
 npm -g ts-node
 wattbewerb
 ```
+
+Run without checkout
+```sh
+npm -g ts-node
+npx -g typescript
+npx @cschuff/wattbewerb
+```
