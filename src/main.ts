@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { BetriebsStatusId, Energietraeger } from './makstr-client/interfaces';
 import { EinheitResponse } from './makstr-client/responses';
 
+/* @ts-ignore */
 const year2021 = moment('2021-01-01T01:00:00+01:00');
 const pageSize = '10000';
 
@@ -12,31 +13,55 @@ const pageSize = '10000';
 //     ort: 'Frankenthal',
 //     plz: '67227',
 //     einwohner: 49237,
-//     gemeindeSchluessel: ''
+//     gemeindeschluessel: ''
 // };
 
 // const input = {
 //     ort: 'Köln',
 //     plz: '50667',
 //     einwohner: 1085664,
-//     gemeindeSchluessel: '05315000'
+//     gemeindeschluessel: '05315000'
 // };
 
 // const input = {
 //     ort: 'Bous',
 //     plz: '66359',
 //     einwohner: 7011,
-//     gemeindeSchluessel: '10044122'
+//     gemeindeschluessel: '10044122'
 // };
 
-const input = {
-  ort: 'Kempen, Niederrhein',
-  plz: '47906',
-  einwohner: 34597,
-  gemeindeSchluessel: '05166012',
-};
+// const input = {
+//   ort: 'Kempen, Niederrhein',
+//   plz: '47906',
+//   einwohner: 34597,
+//   gemeindeschluessel: '05166012',
+// };
 
-const { plz, ort, einwohner, gemeindeSchluessel } = input;
+// const { plz, ort, einwohner, gemeindeschluessel } = input;
+
+
+/* @ts-ignore */
+const gemeindeschluessel = process.argv[2];
+/* @ts-ignore */
+const einwohner = process.argv[3];
+
+if (!gemeindeschluessel || !einwohner) {
+  console.log('\nEingabedaten fehlen!\n');
+  console.log('Das Skript ist wie folgt zu benutzen:');
+  console.log('> npx @wattbewerb/wattbewerb [Gemeindeschlüssel] [Einwohnerzahl]');
+  console.log('Beispiel:');
+  console.log('> npx @wattbewerb/wattbewerb 05315000 1085664');
+  
+  /* @ts-ignore */
+  process.exit(0);
+}
+
+
+console.log(`\n☀️ ✖️ 2️⃣  Willkommen beim Wattbewerb ☀️ ✖️ 2️⃣\n`);
+console.log(`Daten werden berechnet für`);
+console.log(`Gemeindeschlüssel: ${gemeindeschluessel}`);
+console.log(`Einwohner: ${einwohner}\n`);
+
 
 const url =
   `https://www.marktstammdatenregister.de/MaStR/Einheit/EinheitJson/GetVerkleinerteOeffentlicheEinheitStromerzeugung?` +
@@ -44,7 +69,7 @@ const url =
   `page=1&pageSize=${pageSize}&group=&` +
   `&filter=` +
   `Betriebs-Status~eq~%27${BetriebsStatusId.IN_BETRIEB}%27~and~` +
-  `Gemeindeschl%C3%BCssel~eq~%27${gemeindeSchluessel}%27~and~` +
+  `Gemeindeschl%C3%BCssel~eq~%27${gemeindeschluessel}%27~and~` +
   `Energietr%C3%A4ger~eq~%27${Energietraeger.SOLARE_STRAHLUNGSENERGIE}%27~and~`;
 // + `Postleitzahl~eq~%27${plz}%27`;
 
@@ -68,6 +93,7 @@ axios
       // console.log(moment(entry.InbetriebnahmeDatum));
       // console.log(entry.Bruttoleistung);
 
+      /* @ts-ignore */
       if (moment(entry.InbetriebnahmeDatum).isBefore(year2021)) {
         totalEnd2020 += entry.Bruttoleistung;
       }
@@ -82,17 +108,23 @@ axios
 
     const growth = totalNow / (totalEnd2020 / 100) - 100;
 
-    console.log(`kWp für ${ort} (${gemeindeSchluessel})`);
-    console.log(`\n################################\n`);
+    console.log(`\nkWp für (${gemeindeschluessel})`);
+    console.log(`################################\n`);
     console.log(`31.12.2020`);
     console.log(`  Gesamt:          ${totalEnd2020} kWp`);
     console.log(`  Pro Einwohner:   ${perResidentEnd2020} kWp/Einwohner`);
+    /* @ts-ignore */
     console.log(moment().format('DD.MM.YYYY'));
     console.log(`  Gesamt:          ${totalNow} kWp`);
     console.log(`  Pro Einwohner:   ${perResidentNow} kWp/Einwohner`);
     console.log(`Wachstum 2021`);
     console.log(`  kWp:             ${totalNow - totalEnd2020} kWp`);
-    console.log(`  Prozentual:      ${growth} %`);
+    console.log(`  Prozentual:      ${growth} %\n\n`);
+
+    console.log(`Disclaimer: Diese Berechnung ist unverbindlich und möglicherweise fehlerhaft. `
+    + `Zur Anmeldung ist daher eine genaue Berechnung auf Grund des Datenexports aus dem `
+    + `Markstammdatenregister erforderlich.\n\n`
+    + `Weiter Informationen unter https://faktor2.solar/staedte-challenge/\n\n`);
   })
   .catch(function (error) {
     // handle error
