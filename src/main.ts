@@ -39,7 +39,6 @@ const pageSize = '10000';
 
 // const { plz, ort, einwohner, gemeindeschluessel } = input;
 
-
 /* @ts-ignore */
 const gemeindeschluessel = process.argv[2];
 /* @ts-ignore */
@@ -48,20 +47,20 @@ const einwohner = process.argv[3];
 if (!gemeindeschluessel || !einwohner) {
   console.log('\nEingabedaten fehlen!\n');
   console.log('Das Skript ist wie folgt zu benutzen:');
-  console.log('> npx @wattbewerb/wattbewerb [Gemeindeschlüssel] [Einwohnerzahl]');
+  console.log(
+    '> npx @wattbewerb/wattbewerb [Gemeindeschlüssel] [Einwohnerzahl]',
+  );
   console.log('Beispiel:');
   console.log('> npx @wattbewerb/wattbewerb 05315000 1085664');
-  
+
   /* @ts-ignore */
   process.exit(0);
 }
-
 
 console.log(`\n☀️ ✖️ 2️⃣  Willkommen beim Wattbewerb ☀️ ✖️ 2️⃣\n`);
 console.log(`Daten werden berechnet für`);
 console.log(`Gemeindeschlüssel: ${gemeindeschluessel}`);
 console.log(`Einwohner: ${einwohner}\n`);
-
 
 const url =
   `https://www.marktstammdatenregister.de/MaStR/Einheit/EinheitJson/GetVerkleinerteOeffentlicheEinheitStromerzeugung?` +
@@ -84,6 +83,7 @@ axios
 
     let totalNow = 0;
     let totalEnd2020 = 0;
+    let ort = '';
     response.data.Data.forEach((entry) => {
       // console.log(entry.EnergietraegerName);
       // console.log(entry.EinheitName);
@@ -92,6 +92,10 @@ axios
       // console.log(new Date(entry.InbetriebnahmeDatum.split('(').pop().split(')')[0]));
       // console.log(moment(entry.InbetriebnahmeDatum));
       // console.log(entry.Bruttoleistung);
+
+      if (!ort) {
+        ort = entry.Ort;
+      }
 
       /* @ts-ignore */
       if (moment(entry.InbetriebnahmeDatum).isBefore(year2021)) {
@@ -108,7 +112,7 @@ axios
 
     const growth = totalNow / (totalEnd2020 / 100) - 100;
 
-    console.log(`\nkWp für (${gemeindeschluessel})`);
+    console.log(`\nkWp für ${ort} (${gemeindeschluessel})`);
     console.log(`################################\n`);
     console.log(`31.12.2020`);
     console.log(`  Gesamt:          ${totalEnd2020} kWp`);
@@ -121,10 +125,12 @@ axios
     console.log(`  kWp:             ${totalNow - totalEnd2020} kWp`);
     console.log(`  Prozentual:      ${growth} %\n\n`);
 
-    console.log(`Disclaimer: Diese Berechnung ist unverbindlich und möglicherweise fehlerhaft. `
-    + `Zur Anmeldung ist daher eine genaue Berechnung auf Grund des Datenexports aus dem `
-    + `Markstammdatenregister erforderlich.\n\n`
-    + `Weiter Informationen unter https://faktor2.solar/staedte-challenge/\n\n`);
+    console.log(
+      `Disclaimer: Diese Berechnung ist unverbindlich und möglicherweise fehlerhaft. ` +
+        `Zur Anmeldung ist daher eine genaue Berechnung auf Grund des Datenexports aus dem ` +
+        `Markstammdatenregister erforderlich.\n\n` +
+        `Weiter Informationen unter https://faktor2.solar/staedte-challenge/\n\n`,
+    );
   })
   .catch(function (error) {
     // handle error
