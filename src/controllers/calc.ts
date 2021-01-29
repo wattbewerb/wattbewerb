@@ -1,9 +1,9 @@
 #!/usr/bin/env ts-node
 import axios, { AxiosResponse } from 'axios';
 import * as moment from 'moment';
-
-import { BetriebsStatusId, Energietraeger } from './makstr-client/interfaces';
-import { EinheitResponse } from './makstr-client/responses';
+import { BetriebsStatusId } from '../makstr-client/interfaces/BetriebsStatusId.enum';
+import { Energietraeger } from '../makstr-client/interfaces/Energietraeger.enum';
+import { EinheitResponse } from '../makstr-client/responses/einheit-response.interface';
 
 const year2021 = moment('2021-01-01T01:00:00+01:00');
 const pageSize = '10000';
@@ -51,7 +51,7 @@ const url =
 // console.log(url);
 
 axios
-  .get<EinheitResponse>(url)
+  .get(url)
   .then((response: AxiosResponse<EinheitResponse>) => {
     // console.log('page size: ' + pageSize);
     // console.log('data size: ' + response.data.Data.length);
