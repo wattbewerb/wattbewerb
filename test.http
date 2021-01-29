@@ -1,0 +1,1 @@
+GET https://www.marktstammdatenregister.de/MaStR/Einheit/EinheitJson/GetVerkleinerteOeffentlicheEinheitStromerzeugung?page=1&pageSize=4000&group=&filter=Energietr%C3%A4ger~eq~%272495%27~and~Betriebs-Status~eq~%2735%27~and~Gemeindeschlüssel~eq~%2705315000%27

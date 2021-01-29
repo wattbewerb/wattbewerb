@@ -126,7 +126,7 @@ axios
     console.log(`  Prozentual:      ${growth} %\n\n`);
 
     console.log(
-      `Disclaimer: Diese Berechnung ist unverbindlich und möglicherweise fehlerhaft.\n ` +
+      `Disclaimer: Diese Berechnung ist unverbindlich und möglicherweise fehlerhaft.\n` +
         `Zur Anmeldung ist daher eine genaue Berechnung auf Grundlage des Datenexports aus dem\n` +
         `Markstammdatenregister erforderlich.\n\n` +
         `Weiter Informationen unter https://faktor2.solar/staedte-challenge/\n\n`,
