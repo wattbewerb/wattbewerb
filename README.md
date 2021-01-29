@@ -33,7 +33,9 @@ Wachstum 2021
   Prozentual:      0.0873816215194978 %
 
 
-Disclaimer: Diese Berechnung ist unverbindlich und möglicherweise fehlerhaft. Zur Anmeldung ist daher eine genaue Berechnung auf Grund des Datenexports aus dem Markstammdatenregister erforderlich.
+Disclaimer: Diese Berechnung ist unverbindlich und möglicherweise fehlerhaft.
+Zur Anmeldung ist daher eine genaue Berechnung auf Grundlage des Datenexports aus dem
+Markstammdatenregister erforderlich.
 
 Weiter Informationen unter https://faktor2.solar/staedte-challenge/
 ```
