@@ -47,14 +47,13 @@ a:hover {
 }
 
 .form div {
-    width: 40%;
+    width: 45%;
 }
 .form div > * {
     display: block;
 }
 
 .form label {
-    font-size: 0.75rem;
     font-weight: 400;
 }
 
@@ -64,14 +63,14 @@ a:hover {
     outline: none !important;
     border: none !important;
     border-bottom: 1px solid #FFF !important;
-    font-size: 1rem;
+    font-size: 1.25rem;
     color: #FFF;
     padding: 2px 0;
     margin: 1rem 0 .5rem;
 }
 
 .form a {
-    font-size: .5rem;
+    font-size: .625rem;
     text-align: right;
     margin-bottom: .25rem;
 }
