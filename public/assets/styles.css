@@ -1,0 +1,77 @@
+html {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#293379+0,ea5a20+100 */
+    background: #293379; /* Old browsers */
+    background: -moz-linear-gradient(left,  #293379 0%, #ea5a20 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  #293379 0%,#ea5a20 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  #293379 0%,#ea5a20 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#293379', endColorstr='#ea5a20',GradientType=1 ); /* IE6-9 */
+    
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    color: #FFF;
+
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+a {
+    color: #FFF;
+}
+a:hover {
+    color: #293379;
+}
+
+.page-width {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    max-width: 600px;
+}
+
+.logo {
+    width: 100%;
+    margin-top: 4rem;
+    margin-bottom: 3rem;
+}
+
+.form {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-weight: 300;
+}
+
+.form div {
+    width: 40%;
+}
+.form div > * {
+    display: block;
+}
+
+.form label {
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+.form input {
+    width: 100%;
+    background: none !important;
+    outline: none !important;
+    border: none !important;
+    border-bottom: 1px solid #FFF !important;
+    font-size: 1rem;
+    color: #FFF;
+    padding: 2px 0;
+    margin: 1rem 0 .5rem;
+}
+
+.form a {
+    font-size: .5rem;
+    text-align: right;
+    margin-bottom: .25rem;
+}
