@@ -1,5 +1,5 @@
 {
-  "name": "@wattbewerb/makstr-client",
+  "name": "@wattbewerb/wattbewerb",
   "version": "0.0.1",
   "description": "",
   "main": "src/main.ts",
@@ -32,6 +32,7 @@
   "devDependencies": {
     "@tsconfig/node14": "^1.0.0",
     "@types/express": "^4.17.11",
+    "@types/jest": "^26.0.20",
     "@types/node": "^14.14.22",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",

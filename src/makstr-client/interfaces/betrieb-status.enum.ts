@@ -1,4 +1,4 @@
-export enum BetriebsStatusId {
+export enum BetriebsStatus {
   IN_PLANUNG = 31,
   IN_BETRIEB = 35,
   VORUEBERGEHEND_STILLGELEGT = 37,

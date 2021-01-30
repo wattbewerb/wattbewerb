@@ -1,7 +1,5 @@
-import { Stromerzeugung } from './stromerzeugung.interface';
-
-export interface EinheitResponse {
-  Data: Stromerzeugung[];
+export interface MaStrResponse<T> {
+  Data: T[];
   Total: number;
   AggregateResults: [];
   Errors: null;

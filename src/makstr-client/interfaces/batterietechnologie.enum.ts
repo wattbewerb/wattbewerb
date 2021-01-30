@@ -1,0 +1,8 @@
+export enum Batterietechnologie {
+  BLEI = 728,
+  HOCHTEMPREATUR = 730,
+  LITHIUM = 727,
+  NICKEL_CADMIUM_METALLHYBRID = 731,
+  REDOX_FLOW = 729,
+  SONSTIGE = 732,
+}
