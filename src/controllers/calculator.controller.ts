@@ -20,10 +20,33 @@ export class CalculatorController implements IBaseController {
   index = (req: Request, res: Response) => {
     const gemeindeschluessel = req.params.gemeindeschluessel;
     const einwohnerzahl = req.params.einwohnerzahl;
-    res.send(
-      `Hello ${gemeindeschluessel}! Wow, you have ${einwohnerzahl} residents. Quite impressive!`,
-    );
-
-    // res.render('home/index', { users });
+    
+    console.log(gemeindeschluessel);
+    console.log(einwohnerzahl);
+    
+    res.send({
+      ort: 'Nürnberg',
+      start: {
+        kwp: 80431,
+        anlagen: 3120,
+        module: 256920,
+        // watt peak
+        wpPerResident: 155.163
+      },
+      now: {
+        kwp: 80548,
+        anlagen: 3136,
+        module: 257277,
+        // watt peak
+        wpPerResident: 155.389
+      },
+      diff: {
+        kwp: 117,
+        anlagen: 16,
+        module: 357,
+        // watt peak
+        wpPerResident: 0.226
+      }
+    });
   };
 }

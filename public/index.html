@@ -25,19 +25,28 @@
     <div class="form">
       <div>
         <label title="Gemeindeschlüssel">Gemeindeschlüssel</label>
-        <input type="text"  tabindex="1" autofocus />
-        <a href="https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel">Was ist der Gemeindeschlüssel?</a>
-        <a href="https://www.orte-in-deutschland.de/">Wo finde ich meinen Gemeindeschlüssel?</a>
+        <input id="gemeindeschluessel" type="text" maxlength="8" tabindex="1" placeholder="08212000" value="08212000" autofocus />
+        <a href="https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel" target="_blank">Was ist der Gemeindeschlüssel?</a>
+        <a href="https://www.orte-in-deutschland.de/" target="_blank">Wo finde ich meinen Gemeindeschlüssel?</a>
       </div>
         
       <div>
         <label title="Einwohnerzahl">Einwohnerzahl</label>
-        <input type="text" tabindex="2"/>
-        <a href="https://www.orte-in-deutschland.de/">Wo finde ich die aktuelle Einwohnerzahl meiner Gemeinde?</a>
+        <input id="einwohnerzahl" type="text" tabindex="2" placeholder="313092" value="313092"/>
+        <a href="https://www.orte-in-deutschland.de/" target="_blank">Wo finde ich die aktuelle Einwohnerzahl meiner Gemeinde?</a>
+      </div>
+
+      <div class="submit">
+        <button id="submit" class="swipe" type="submit">Suchen&nbsp;></button>
       </div>
     </div>
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/reset.css" />
     <link rel="stylesheet" href="assets/styles.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script/script.js"></script>
   </body>
 </html>

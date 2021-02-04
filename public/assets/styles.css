@@ -1,3 +1,13 @@
+/* Dark Blue:    #293379 */
+/* Blue:         #50508E */
+/* Light Blue:   #7A75A8 */
+/* Dark Orange:  #EA5A20 */
+/* Orange:       #EF7F48 */
+/* Light Orange: #F4A274 */
+
+/* Red: #AD2930 */
+
+
 html {
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#293379+0,ea5a20+100 */
     background: #293379; /* Old browsers */
@@ -15,7 +25,9 @@ html {
     color: #FFF;
 
     font-size: 16px;
-    font-family: sans-serif;
+    /* see https://fonts.google.com/specimen/Source+Sans+Pro */
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 200;
 }
 
 a {
@@ -23,6 +35,25 @@ a {
 }
 a:hover {
     color: #293379;
+}
+
+button {
+    width: 100%;
+    background: none;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+    padding: .5rem;
+    outline: none;
+    border: 1px solid #fff;
+    margin-top: 2rem;
+    cursor: pointer;
+}
+button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+button:active {
+    background: rgba(255, 255, 255, 0.7);
 }
 
 .page-width {
@@ -43,22 +74,26 @@ a:hover {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    font-weight: 300;
 }
 
 .form div {
-    width: 45%;
+    flex-basis: 40%;
+    flex-grow: 1;
+    padding-right: 2rem;
+}
+.form div.submit {
+    flex-basis: 20%;
+    padding-right: 0;
 }
 .form div > * {
     display: block;
 }
 
-.form label {
-    font-weight: 400;
-}
-
 .form input {
     width: 100%;
+}
+
+input {
     background: none !important;
     outline: none !important;
     border: none !important;
@@ -67,6 +102,16 @@ a:hover {
     color: #FFF;
     padding: 2px 0;
     margin: 1rem 0 .5rem;
+    font-weight: 400;
+}
+input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    font-weight: 200;
+    font-style: italic;
+}
+input.error {
+    border-bottom: 1px solid #AD2930 !important;
+    color: #AD2930;
 }
 
 .form a {
