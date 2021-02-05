@@ -1,11 +1,16 @@
 import express from 'express';
 import { Application } from 'express';
+import { IBaseController } from './controllers/base-controller.interface';
 
 export class App {
   public app: Application;
   public port: number;
 
-  constructor(appInit: { port: number; middleWares: any; controllers: any }) {
+  constructor(appInit: {
+    port: number;
+    controllers: IBaseController[];
+    middleWares?: any;
+  }) {
     this.app = express();
     this.port = appInit.port;
 

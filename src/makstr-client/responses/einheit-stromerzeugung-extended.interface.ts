@@ -1,4 +1,4 @@
-import { EinheitStromerzeugung } from '.';
+import { EinheitStromerzeugung } from './einheit-stromerzeugung';
 import {
   Energietraeger,
   Batterietechnologie,
