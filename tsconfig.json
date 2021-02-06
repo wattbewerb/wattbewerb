@@ -7,7 +7,9 @@
     "sourceMap": true,
     "esModuleInterop": true,
     "types": ["node"],
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
