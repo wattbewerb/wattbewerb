@@ -5,7 +5,7 @@ import { Moment } from 'moment';
 import moment from 'moment';
 
 function dateStringToDate(date: string) {
-  const dateRegex = /\/Date\((\d*\))/i;
+  const dateRegex = /\/Date\((-?\d*\))/i;
   console.log(date);
   return moment(parseInt(date.match(dateRegex)![1]));
 }
@@ -26,24 +26,11 @@ export class EinheitStromerzeugung {
   Bruttoleistung!: number; // 9.9,
 
   @Type(() => String)
-  // @Transform(({ value }) => dateStringToDate(value), { toClassOnly: true })
-  @Transform(
-    ({ value, key, obj }) => {
-      console.log(key, value, obj);
-      return dateStringToDate(value);
-    },
-    { toClassOnly: true },
-  )
+  @Transform(({ value }) => dateStringToDate(value), { toClassOnly: true })
   DatumLetzteAktualisierung!: Moment; // '/Date(1610466306443)/',
 
   @Type(() => String)
-  @Transform(
-    ({ value, key, obj }) => {
-      console.log(key, value, obj);
-      return dateStringToDate(value);
-    },
-    { toClassOnly: true },
-  )
+  @Transform(({ value }) => dateStringToDate(value), { toClassOnly: true })
   EinheitMeldeDatum!: Moment; // '/Date(1607817600000)/',
 
   EinheitName!: string; // 'EntenSolar',
@@ -55,13 +42,7 @@ export class EinheitStromerzeugung {
   Id!: number; // 3871647,
 
   @Type(() => String)
-  @Transform(
-    ({ value, key, obj }) => {
-      console.log(key, value, obj);
-      return dateStringToDate(value);
-    },
-    { toClassOnly: true },
-  )
+  @Transform(({ value }) => dateStringToDate(value), { toClassOnly: true })
   InbetriebnahmeDatum!: Moment; // '/Date(1607644800000)/',
 
   IsAnonymisiert!: boolean; // true;

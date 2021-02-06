@@ -1,6 +1,5 @@
 import moment from 'moment';
 import { MakstrClient } from '../makstr-client/makstr-client';
-import { EinheitStromerzeugung } from '../makstr-client/responses';
 
 export class CalculatorService {
   private readonly makStrClient: MakstrClient;
