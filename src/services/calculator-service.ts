@@ -28,8 +28,8 @@ export class CalculatorService {
     );
     console.log(totalNow);
 
-    const perResidentEnd2020 = totalEnd2020 / einwohnerZahl;
-    const perResidentNow = totalNow / einwohnerZahl;
+    const perResidentEnd2020 = (totalEnd2020 / einwohnerZahl) * 1000;
+    const perResidentNow = (totalNow / einwohnerZahl) * 1000;
 
     const growth = totalNow / totalEnd2020 - 1;
     return {

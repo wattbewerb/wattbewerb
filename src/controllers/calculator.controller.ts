@@ -32,13 +32,7 @@ export class CalculatorController implements IBaseController {
       einwohnerzahl,
     );
     console.log(data);
+    
     res.status(200).json(data);
-    // res
-    //   .status(200)
-    //   .send(
-    //     `Hello ${gemeindeschluessel}! Wow, you have ${einwohnerzahl} residents. Quite impressive!`,
-    //   );
-
-    // res.render('home/index', { users });
   };
 }
