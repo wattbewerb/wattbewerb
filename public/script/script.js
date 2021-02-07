@@ -16,7 +16,18 @@ function validateNumber(length) {
     }
 }
 
+function onHashChanged() {
+    if (location.hash.length > 1) {
+        var vals = location.hash.split('#').pop().split('/');
+        var schluessel = $('#gemeindeschluessel').val(vals[0]);
+        var einwohner = $('#einwohnerzahl').val(vals[1]);
+    }
+}
+
 $(document).ready(function () {
+    $(window).on('hashchange', onHashChanged);
+    onHashChanged();
+    
     $('#submit').on('mouseup', function (event) {
         var schluessel = $('#gemeindeschluessel').val();
         var einwohner = $('#einwohnerzahl').val();
