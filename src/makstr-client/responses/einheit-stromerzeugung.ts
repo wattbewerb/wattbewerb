@@ -6,7 +6,6 @@ import moment from 'moment';
 
 function dateStringToDate(date: string) {
   const dateRegex = /\/Date\((-?\d*\))/i;
-  console.log(date);
   return moment(parseInt(date.match(dateRegex)![1]));
 }
 

@@ -26,7 +26,6 @@ export class CalculatorService {
     const totalNow = Math.floor(
       data.reduce((memo, entry) => memo + entry.Bruttoleistung, 0),
     );
-    console.log(totalNow);
 
     const perResidentEnd2020 = (totalEnd2020 / einwohnerZahl) * 1000;
     const perResidentNow = (totalNow / einwohnerZahl) * 1000;
