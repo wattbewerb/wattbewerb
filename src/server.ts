@@ -9,7 +9,7 @@ import { CalculatorController } from './controllers/calculator.controller';
 // import HomeController from './controllers/home/home.controller'
 
 const app = new App({
-  port: 3000,
+  port: parseInt(process.env.PORT!) || 3000,
   controllers: [
     new CalculatorController(),
     // new PostsController()
