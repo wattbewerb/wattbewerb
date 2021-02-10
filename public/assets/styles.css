@@ -15,24 +15,23 @@ html {
     background: -webkit-linear-gradient(left,  #293379 0%,#ea5a20 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to right,  #293379 0%,#ea5a20 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#293379', endColorstr='#ea5a20',GradientType=1 ); /* IE6-9 */
-    
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
-
     color: #FFF;
-
     font-size: 16px;
     /* see https://fonts.google.com/specimen/Source+Sans+Pro */
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 200;
+    bottom: 0;
 }
 
 h1 {
-    font-weight: 600;
+    font-weight: 400;
     font-size: 4rem;
     text-align: center;
+    /* color: #293379; */
 }
 
 a {
@@ -53,6 +52,7 @@ button {
     border: 1px solid #fff;
     margin-top: 2rem;
     cursor: pointer;
+    font-weight: 800;
 }
 button:hover {
     background: rgba(255, 255, 255, 0.3);
@@ -64,6 +64,7 @@ button:active {
 
 .relative {
     position: relative;
+    margin: 2rem 0;
 }
 
 .left, .result .table .cell.left {
@@ -75,6 +76,17 @@ button:active {
 }
 
 
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
 .page-width {
     display: block;
     margin-left: auto;
@@ -83,27 +95,68 @@ button:active {
     max-width: 600px;
 }
 
+.header {
+    align-self: stretch;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+}
+.header-background {
+    background: transparent url("panel-2.png") no-repeat top left;
+    background-size: 400px 400px;
+    background-position: -186px -106px;
+}
+
+.content {
+    flex-grow: 1;
+    /* background: rgba(255,255,255,.1); */
+    align-self: stretch;
+    /* background: rgba(255,255,255,.8); */
+}
+
+.content-inner {
+    width: 600px;
+    margin: 1rem auto;
+    margin-right: auto;
+    /* color: #333; */
+}
+
 .footer {
+    border-top: 1px solid #fff;
+    align-self: stretch;
+    align-self: stretch;
+    text-align: center;
+}
+.footer-background {
+    background: transparent url("panel-1.png") no-repeat bottom -111px right -41px;
+    background-size: 400px 400px;
+}
+
+.footer-inner {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    flex: 5rem 0px;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
+    margin: .5rem auto;
     gap: 0 .5rem;
+    width: 600px;
+}
+.footer a {
+    /* color: #fff; */
+    font-weight: 400;
 }
 
 .logo {
-    width: 100%;
-    margin-top: 4rem;
-    margin-bottom: 1rem;
+    width: 400px;
+    /* margin-top: 3rem; */
+    /* margin-bottom: 1rem; */
+    margin: 3rem auto 1rem;
+    /* text-align: center; */
 }
 
 .form {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    margin: 2rem 0;
+    /* margin: 2rem 0; */
 }
 
 .form div {
@@ -123,6 +176,10 @@ button:active {
     width: 100%;
 }
 
+label {
+    font-weight: 400;
+}
+
 input {
     background: none !important;
     outline: none !important;
@@ -133,7 +190,7 @@ input {
     color: #FFF;
     padding: 2px 0;
     margin: 1rem 0 .5rem;
-    font-weight: 400;
+    font-weight: 600;
 }
 input::placeholder {
     color: rgba(255, 255, 255, 0.2);
@@ -146,7 +203,7 @@ input.error {
 }
 
 .form a {
-    font-size: .625rem;
+    font-size: .75rem;
     text-align: right;
     margin-bottom: .25rem;
 }
@@ -163,16 +220,43 @@ input.error {
 
 .big {
     display: flex;
-    justify-content: space-around;
-    margin: 1rem 0 2rem;
-    font-size: 2.5rem;
+    justify-content: space-between;
+}
+.big.start {
+    font-family: 'Source Sans Pro' Black;
     font-weight: 600;
+    font-size: 3.5rem;
+    margin-top: 1.5rem;
+}
+.big.checked {
+    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 2.5rem;
+    color: rgba(255,255,255,1.0);
+}
+
+.big.unchecked {
+    font-weight: 600;
+    font-size: 2.5rem;
+    margin-top: .5rem;
+}
+.unchecked {
+    opacity: .7;
+}
+
+.big > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-grow: 1;
+    flex-basis: 33%;
 }
 
 .big span.description {
     font-size: 1rem;
-    font-weight: 200;
-    margin-left: .25rem;
+    font-weight: 400;
+    align-self: flex-end;
+    margin-top: -0.25rem;
 }
 
 .result {
@@ -188,7 +272,7 @@ input.error {
     display: table-row;
 }
 
-.result .table .row.header {
+.result .table .row.row-header {
     font-weight: 100;
     font-size: .75rem;
 }
@@ -202,4 +286,14 @@ input.error {
     text-align: right;
     padding: .25rem 0;
     /* border-bottom: 1px solid #fff; */
+}
+
+.info {
+    display: none;
+}
+
+.info-icon {
+    height: 1rem;
+    width: 1rem;
+    margin-bottom: -1px;
 }

@@ -20,118 +20,175 @@
     <meta name="theme-color" content="#ffffff">
   </head>
   <body>
-    <div class="page-width">
-      <img class="logo" src="assets/logo.png" />
-
-      <div class="form">
-        <div>
-          <label title="Gemeindeschlüssel">Gemeindeschlüssel</label>
-          <input id="gemeindeschluessel" type="text" maxlength="8" tabindex="1" placeholder="08212000" value="" autofocus />
-          <a href="https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel" target="_blank">Was ist der Gemeindeschlüssel?</a>
-          <a href="https://www.orte-in-deutschland.de/" target="_blank">Wo finde ich meinen Gemeindeschlüssel?</a>
-        </div>
-          
-        <div>
-          <label title="Einwohnerzahl">Einwohnerzahl</label>
-          <input id="einwohnerzahl" type="text" tabindex="2" placeholder="313092" value=""/>
-          <a href="https://www.orte-in-deutschland.de/" target="_blank">Wo finde ich die aktuelle Einwohnerzahl meiner Gemeinde?</a>
-        </div>
-
-        <div class="submit">
-          <button id="submit" class="swipe" type="submit">Suchen&nbsp;></button>
-        </div>
+    <div class="page">
+      <div class="header">
+        <img class="logo" src="assets/logo-faktor2.png" />
       </div>
 
-      <div class="relative">
-        <div id="loading" class="line-scale loading">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-
-        <div id="result" class="result">
-          <h1>Karlsruhe</h1>
-
-          <div class="big">
-            <div class="total">
-              <span class="value">82.454</span>
-              <span class="description">kWp</span>
+      <div class="content">
+        <div class="content-inner">
+          <div class="form">
+            <div>
+              <label title="Gemeindeschlüssel">Gemeindeschlüssel</label>
+              <input id="gemeindeschluessel" type="text" maxlength="8" tabindex="1" placeholder="08212000" value="" autofocus />
+              <a href="https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel" target="_blank">Was ist der Gemeindeschlüssel?</a>
+              <a href="https://www.orte-in-deutschland.de/" target="_blank">Wo finde ich meinen Gemeindeschlüssel?</a>
             </div>
-            <div class="anlagen">
-              <span class="value">2.509</span>
-              <span class="description">Anlagen</span>
+              
+            <div>
+              <label title="Einwohnerzahl">Einwohnerzahl</label>
+              <input id="einwohnerzahl" type="text" tabindex="2" placeholder="313092" value=""/>
+              <a href="https://www.orte-in-deutschland.de/" target="_blank">Wo finde ich die aktuelle Einwohnerzahl meiner Gemeinde?</a>
             </div>
-            <div class="perResident">
-              <span class="value">263,22</span>
-              <span class="description">Wp/Einwohner</span>
+
+            <div class="submit">
+              <button id="submit" class="swipe" type="submit">Suchen&nbsp;></button>
             </div>
           </div>
 
-          <div class="table">
-            <div class="row header">
-              <div class="cell left"></div>
-              <div class="cell">Leistung</div>
-              <div class="cell">Anzahl Anlagen</div>
-              <!-- <div class="cell">Module</div> -->
-              <div class="cell">Watt peak pro Einwohner</div>
+          <div class="relative">
+            <div id="loading" class="line-scale loading">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
             </div>
-            <div class="row end2020">
-              <div class="cell left date">31.12.2020</div>
-              <div class="cell bold total">82.454 kWp</div>
-              <div class="cell anlagen">2.509</div>
-              <!-- <div class="cell ">179.089</div> -->
-              <div class="cell perResident">263,22 Wp/E</div>
-            </div>
-            <div class="row border now">
-              <div class="cell left date">05.02.2021</div>
-              <div class="cell bold total">82.706 kWp</div>
-              <div class="cell anlagen">2.535</div>
-              <!-- <div class="cell ">179.918</div> -->
-              <div class="cell perResident">264,15 Wp/E</div>
-            </div>
-            <div class="row growth">
-              <div class="cell left bold">Zubau</div>
-              <div class="cell bold total">252 kWp</div>
-              <div class="cell anlagen">26</div>
-              <!-- <div class="cell">829</div> -->
-              <div class="cell perResident">0,31 Wp/E</div>
+
+            <div id="result" class="result">
+              <h1>Karlsruhe</h1>
+
+              <div class="big start">
+                <div class="total">
+                  <span class="description">kWp</span>
+                  <span class="value">82.454</span>
+                </div>
+                <div class="anlagen">
+                  <span class="description">Anlagen</span>
+                  <span class="value">2.509</span>
+                </div>
+                <div class="perResident">
+                  <span class="description">Wp/Einwohner</span>
+                  <span class="value">263,22</span>
+                </div>
+              </div>
+
+              <div class="big checked">
+                <div class="total">
+                  <span class="description">Davon gepr&uuml;ft</span>
+                  <span class="value">82.454</span>
+                </div>
+                <div class="anlagen">
+                  <span class="description">&nbsp;</span>
+                  <span class="value">2.509</span>
+                </div>
+                <div class="perResident">
+                  <span class="description">&nbsp;</span>
+                  <span class="value">263,22</span>
+                </div>
+              </div>
+
+              <div class="big unchecked">
+                <div class="total">
+                  <span class="description unchecked">Davon in Pr&uuml;fung</span>
+                  <span class="value">82.454</span>
+                </div>
+                <div class="anlagen">
+                  <span class="description unchecked">&nbsp;</span>
+                  <span class="value">2.509</span>
+                </div>
+                <div class="perResident">
+                  <span class="description unchecked">&nbsp;</span>
+                  <span class="value">263,22</span>
+                </div>
+              </div>
+
+              <!-- <div class="table">
+                <div class="row header">
+                  <div class="cell left"></div>
+                  <div class="cell">Leistung</div>
+                  <div class="cell">Anzahl Anlagen</div> -->
+                  <!-- <div class="cell">Module</div> -->
+                  <!-- <div class="cell">Watt peak pro Einwohner</div>
+                </div>
+                <div class="row end2020">
+                  <div class="cell left date">31.12.2020</div>
+                  <div class="cell bold total">82.454 kWp</div>
+                  <div class="cell anlagen">2.509</div> -->
+                  <!-- <div class="cell ">179.089</div> -->
+                  <!-- <div class="cell perResident">263,22 Wp/E</div>
+                </div>
+                <div class="row border now">
+                  <div class="cell left date">05.02.2021</div>
+                  <div class="cell bold total">82.706 kWp</div>
+                  <div class="cell anlagen">2.535</div> -->
+                  <!-- <div class="cell ">179.918</div> -->
+                  <!-- <div class="cell perResident">264,15 Wp/E</div>
+                </div>
+                <div class="row growth">
+                  <div class="cell left bold">Zubau</div>
+                  <div class="cell bold total">252 kWp</div>
+                  <div class="cell anlagen">26</div> -->
+                  <!-- <div class="cell">829</div> -->
+                  <!-- <div class="cell perResident">0,31 Wp/E</div> -->
+                <!-- </div> -->
+              <!-- </div> -->
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="page-width footer">
-      <a href="#09361000/42893">Amberg</a>
-      <a href="#05958004/73456">Arnsberg</a>
-      <a href="#09761000/296582">Augsburg</a>
-      <a href="#05334008/28893">Baesweiler</a>
-      <a href="#06411000/159878">Darmstadt</a>
-      <a href="#05913000/588250">Dortmund</a>
-      <a href="#15002000/238762">Halle (Saale)</a>
-      <a href="#05158012/26345">Heiligenhaus</a>
-      <a href="#05166012/34514">Kempen</a>
-      <a href="#05974028/67952">Lippstadt</a>
-      <a href="#05558024/25216">Lüdinghausen</a>
-      <a href="#07314000/172253">Ludwigshafen am Rhein</a>
-      <a href="#05978024/86348">Lünen</a>
-      <a href="#05166016/42496">Nettetal</a>
-      <a href="#05170028/27187">Neukirchen-Vluyn</a>
-      <a href="#03404000/165251">Osnabrück</a>
-      <a href="#08436064/50897">Ravensburg</a>
-      <a href="#08415061/115065">Reutlingen</a>
-      <a href="#05170032/30854">Rheinberg</a>
-      <a href="#05754032/29545">Rietberg</a>
-      <a href="#06436011/15300">Schwalbach am Taunus</a>
-      <a href="#05382060/42804">Siegburg</a>
-      <a href="#08416041/91506">Tübingen</a>
-      <a href="#05334036/38756">Würselen</a>
+        <div class="footer">
+          <div class="info">
+            <p>
+              Berechnungsgrundlage ist das <a href="https://www.marktstammdatenregister.de/MaStR/Einheit/Einheiten/ErweiterteOeffentlicheEinheitenuebersicht" targert="_blank">Marktstammdatenregister</a> 
+              der Bundesnetzagentur.
+            </p>
+            <p>
+              Es werden zur Berechnung der Startwerte folgende Filter herangezogen:
+              <ul>
+                <li>Gemeindeschl&uuml;ssel &quot;entspricht&quot; wie eingegeben</li>
+                <li>Energietr&auml;ger &quot;entspricht&quot; &quot;Solare Strahlungsenergie&quot;</li>
+                <li>Betriebsstatus &quot;entspricht&quot; &quot;In Betrieb&quot; ODER &quot;entspricht&quot; &quot;Vor&uuml;bergehend stillgelegt&quot; </li>
+                <li>&quot;Inbetriebnahmedatum der Einheit&quot; &quot;vor&quot; &quot;13.02.2021&quot;</li>
+                <li>&quot;Registrierungsdatum der Einheit&quot; &quot;vor&quot; &quot;13.02.2021&quot;</li>
+              </ul>
+            </p>
+          </div>
+          <div class="footer-inner">
+            <a href="#09361000/42893">Amberg</a>
+            <a href="#05958004/73456">Arnsberg</a>
+            <a href="#09761000/296582">Augsburg</a>
+            <a href="#05334008/28893">Baesweiler</a>
+            <a href="#06411000/159878">Darmstadt</a>
+            <a href="#05913000/588250">Dortmund</a>
+            <a href="#15002000/238762">Halle (Saale)</a>
+            <a href="#05158012/26345">Heiligenhaus</a>
+            <a href="#05166012/34514">Kempen</a>
+            <a href="#05974028/67952">Lippstadt</a>
+            <a href="#05558024/25216">Lüdinghausen</a>
+            <a href="#07314000/172253">Ludwigshafen am Rhein</a>
+            <a href="#05978024/86348">Lünen</a>
+            <a href="#05166016/42496">Nettetal</a>
+            <a href="#05170028/27187">Neukirchen-Vluyn</a>
+            <a href="#03404000/165251">Osnabrück</a>
+            <a href="#08436064/50897">Ravensburg</a>
+            <a href="#08415061/115065">Reutlingen</a>
+            <a href="#05170032/30854">Rheinberg</a>
+            <a href="#05754032/29545">Rietberg</a>
+            <a href="#06436011/15300">Schwalbach am Taunus</a>
+            <a href="#05382060/42804">Siegburg</a>
+            <a href="#08416041/91506">Tübingen</a>
+            <a href="#05334036/38756">Würselen</a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="assets/reset.css" />
     <link rel="stylesheet" href="assets/styles.css" />
     <link rel="stylesheet" href="assets/loaders.min.css" />
