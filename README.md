@@ -5,7 +5,7 @@
 ## Using the Script
 
 * Install [node.js](https://nodejs.org/en/)
-* open a console / terminal 
+* open a console / terminal
 * Execute `npm install -g typescript ts-node`
 * Execute `npx @wattbewerb/wattbewerb [Gemeindeschlüssel] [Einwohnerzahl]`
 
@@ -39,6 +39,18 @@ Markstammdatenregister erforderlich.
 
 Weiter Informationen unter https://faktor2.solar/staedte-challenge/
 ```
+
+## Applied Filters in Markstammdatenregister
+
+| Field                | Operand     | Value                                         |
+|----------------------|-------------|-----------------------------------------------|
+| Gemeindeschlüssel    | entspricht  | "05166012"                                    |
+| Energieträger        | entspricht  | "Solare Strahlungsenergie"                    |
+| Netzbetreiberprüfung | entspricht  | "Geprüft"                                     |
+| Betriebsstatus       | entspricht  | "In Betrieb" oder "Vorübergehend stillgelegt" |
+| Meldedatum           | vor         | 13.02.2021                                    |
+| Inbetriebnahmedatum  | vor         | 13.02.2021                                    |
+
 ## License
 
 This project is licensed under the [MIT](https://mit-license.org/) License.
