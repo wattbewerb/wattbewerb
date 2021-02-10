@@ -192,4 +192,3 @@ function textToClipboard(el) {
     textToCopy.select();
     document.execCommand('copy');
 }
-
