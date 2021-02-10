@@ -2,13 +2,7 @@ import 'reflect-metadata';
 import { Transform, Type } from 'class-transformer';
 import { BetriebsStatus } from '../interfaces';
 import { Moment } from 'moment';
-import moment from 'moment';
-
-function dateStringToDate(date: string) {
-  const dateRegex = /\/Date\((-?\d*\))/i;
-  console.log(date);
-  return moment(parseInt(date.match(dateRegex)![1]));
-}
+import { dateStringToDate } from './utils';
 
 export class EinheitStromerzeugung {
   AnlagenbetreiberId!: number; // 2619336,

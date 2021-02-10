@@ -39,3 +39,6 @@ Markstammdatenregister erforderlich.
 
 Weiter Informationen unter https://faktor2.solar/staedte-challenge/
 ```
+## License
+
+This project is licensed under the [MIT](https://mit-license.org/) License.

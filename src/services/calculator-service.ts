@@ -1,5 +1,13 @@
+import { plainToClass } from 'class-transformer';
 import moment from 'moment';
+import { inspect } from 'util';
+import {
+  BetriebsStatus,
+  Energietraeger,
+  Netzbetreiberpruefung,
+} from '../makstr-client/interfaces';
 import { MakstrClient } from '../makstr-client/makstr-client';
+import { EinheitStromerzeugungExtended } from '../makstr-client/responses';
 
 export class CalculatorService {
   private readonly makStrClient: MakstrClient;
@@ -7,47 +15,86 @@ export class CalculatorService {
     this.makStrClient = new MakstrClient();
   }
   async calculate(gemeindeSchluessel: string, einwohnerZahl: number) {
-    const year2021 = moment('2021-01-01T01:00:00+01:00');
-
     const start = process.hrtime();
-    const data = await this.makStrClient.query(gemeindeSchluessel);
-    const [durationInSec] = process.hrtime(start);
-
-    const ort = data[0].Ort;
-
-    const anlagenEnd2020 = data.filter((entry) =>
-      entry.InbetriebnahmeDatum.isBefore(year2021),
+    const mainQuery = {
+      Gemeindeschlüssel: `'${gemeindeSchluessel}'`,
+      Energieträger: `'${Energietraeger.SOLARE_STRAHLUNGSENERGIE}'`,
+    };
+    // In Betrieb
+    const installedRequested = await this.makStrClient.extendedQuery<EinheitStromerzeugungExtended>(
+      {
+        ...mainQuery,
+        'Betriebs-Status': `'${BetriebsStatus.IN_BETRIEB}'`,
+      },
     );
 
-    const totalEnd2020 = Math.floor(
-      anlagenEnd2020.reduce((memo, entry) => memo + entry.Bruttoleistung, 0),
+    const installedTransformed = plainToClass(
+      EinheitStromerzeugungExtended,
+      installedRequested,
+    );
+
+    // Vorrübergehend stillgelegt
+    const temporarilyShutoffRequested = await this.makStrClient.extendedQuery<EinheitStromerzeugungExtended>(
+      {
+        ...mainQuery,
+        'Betriebs-Status': `'${BetriebsStatus.VORUEBERGEHEND_STILLGELEGT}'`,
+      },
+    );
+    const temporarilyShutoffTransformed = plainToClass(
+      EinheitStromerzeugungExtended,
+      temporarilyShutoffRequested,
+    );
+
+    const [durationInSec] = process.hrtime(start);
+
+    const data = [...installedTransformed, ...temporarilyShutoffTransformed];
+
+    const ort = data[0].Ort;
+    const netzbetreiberName = data[0].NetzbetreiberNamen;
+
+    const geprueftData = data.filter(
+      (entry) =>
+        entry.IsNBPruefungAbgeschlossen === Netzbetreiberpruefung.GEPRUEFT,
+    );
+    const inPruefungData = data.filter(
+      (entry) =>
+        entry.IsNBPruefungAbgeschlossen === Netzbetreiberpruefung.IN_PRUEFUNG,
     );
 
     const totalNow = Math.floor(
       data.reduce((memo, entry) => memo + entry.Bruttoleistung, 0),
     );
-    console.log(totalNow);
+    const geprueftNow = Math.floor(
+      geprueftData.reduce((memo, entry) => memo + entry.Bruttoleistung, 0),
+    );
+    const inPruefungNow = Math.floor(
+      inPruefungData.reduce((memo, entry) => memo + entry.Bruttoleistung, 0),
+    );
 
-    const perResidentEnd2020 = (totalEnd2020 / einwohnerZahl) * 1000;
     const perResidentNow = (totalNow / einwohnerZahl) * 1000;
+    const geprueftPerResidentNow = (geprueftNow / einwohnerZahl) * 1000;
+    const inPruefungPerResidentNow = (inPruefungNow / einwohnerZahl) * 1000;
 
-    const growth = totalNow / totalEnd2020 - 1;
     return {
       ort,
+      netzbetreiberName,
       gemeindeSchluessel,
-      end2020: {
-        date: year2021.subtract(1, 'day').format('DD.MM.YYYY'),
-        anlagen: anlagenEnd2020.length,
-        total: totalEnd2020,
-        perResident: perResidentEnd2020,
-      },
       now: {
         date: moment().format('DD.MM.YYYY'),
         anlagen: data.length,
         total: totalNow,
         perResident: perResidentNow,
       },
-      growth,
+      geprueft: {
+        anlagen: geprueftData.length,
+        total: geprueftNow,
+        perResident: geprueftPerResidentNow,
+      },
+      inPruefung: {
+        anlagen: inPruefungData.length,
+        total: inPruefungNow,
+        perResident: inPruefungPerResidentNow,
+      },
       secs: durationInSec,
     };
   }
