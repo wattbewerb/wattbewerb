@@ -1,5 +1,6 @@
 import * as express from 'express';
 import { Request, Response } from 'express';
+
 import { CalculatorService } from '../services/calculator-service';
 import { IBaseController } from './base-controller.interface';
 
@@ -27,11 +28,23 @@ export class CalculatorController implements IBaseController {
     const einwohnerzahl = parseInt(req.params.einwohnerzahl);
 
     console.log(gemeindeschluessel, einwohnerzahl);
-    const data = await this.calculatorService.calculate(
-      gemeindeschluessel,
-      einwohnerzahl,
-    );
 
-    res.status(200).json(data);
+    let data;
+    try {
+      data = await this.calculatorService.calculate(
+        gemeindeschluessel,
+        einwohnerzahl,
+      );
+    } catch(err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+
+    if (data) {
+      res.status(200).json(data);
+    } else {
+      res.status(202).end();
+    }
   };
 }

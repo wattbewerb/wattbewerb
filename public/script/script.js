@@ -37,7 +37,7 @@ function onHashChanged() {
         var einwohner = $('#einwohnerzahl').val();
 
         if (validateSchluessel(schluessel) && validateEinwohner(einwohner)) {
-            calculateData(schluessel, einwohner);
+            requestData(schluessel, einwohner);
         }
     }
 }
@@ -51,7 +51,7 @@ $(document).ready(function () {
 
         if (schluessel && einwohner) {
             resetResult();
-            calculateData(schluessel, einwohner);
+            requestData(schluessel, einwohner);
         }
     });
 
@@ -62,13 +62,20 @@ $(document).ready(function () {
 });
 
 
-function calculateData(schluessel, einwohner) {
-    var timeout;
+var currentTimout;
+function requestData(schluessel, einwohner) {
+    window.clearTimeout(currentTimout);
     $.ajax('/api/watt-info/' + schluessel + '/' + einwohner, {
         beforeSend: function() {
             $('#loading').show();
         },
-        success: function(data) {
+        success: function(data, textStatus, jqXHR) {
+            if (jqXHR.status === 202) {
+                currentTimout = window.setTimeout(function() {
+                    requestData(schluessel, einwohner)
+                }, 1000);
+                return;
+            }
             $('#loading').hide();
             $('#result').css({ visibility: 'visible', display: 'none' });
             $('#result').fadeIn(300);
@@ -76,9 +83,17 @@ function calculateData(schluessel, einwohner) {
             $('#result .table').delay( 1000 ).fadeIn( 300 );
             
             displayResult(data);
+        },
+        error: function() {
+            window.clearTimeout(currentTimout);
+            $('#loading').hide();
+            resetResult();
+            console.error('An error occured');
         }
     })
 }
+
+
 
 function resetResult() {
     $('#result').css({ visibility: 'hidden' });
