@@ -1,7 +1,6 @@
 import { plainToClass } from 'class-transformer';
-import { clone } from 'lodash';
 import moment from 'moment';
-import { inspect } from 'util';
+
 import {
   BetriebsStatus,
   Energietraeger,
@@ -16,9 +15,37 @@ export class CalculatorService {
     this.makStrClient = new MakstrClient();
   }
 
-  async requestData(gemeindeSchluessel: string) {
+
+  async calculate(gemeindeschluessel: string, einwohnerzahl: number) {
+    const start = process.hrtime();
+    const data = await this.requestData(gemeindeschluessel);
+    const [durationInSec] = process.hrtime(start);
+
+    const ort = data[0].Ort;
+    const netzbetreiberName = data[0].NetzbetreiberNamen;
+
+    const dataAtStart = this.calculateDataSetPerDate(
+      data, 
+      einwohnerzahl,
+      null,
+      // technical start date of wattbewerb
+      moment('2021-02-13T01:00:00+01:00'), 
+    );
+
+    return {
+      ort,
+      netzbetreiberName,
+      gemeindeschluessel,
+      start: dataAtStart,
+      growth: [],
+      secs: durationInSec,
+    };
+  }
+
+
+  async requestData(gemeindeschluessel: string) {
     const mainQuery = {
-      Gemeindeschlüssel: `'${gemeindeSchluessel}'`,
+      Gemeindeschlüssel: `'${gemeindeschluessel}'`,
       Energieträger: `'${Energietraeger.SOLARE_STRAHLUNGSENERGIE}'`,
     };
     // In Betrieb
@@ -49,33 +76,6 @@ export class CalculatorService {
     const data = [...installedTransformed, ...temporarilyShutoffTransformed];
 
     return data;
-  }
-
-
-  async calculate(gemeindeSchluessel: string, einwohnerzahl: number) {
-    const start = process.hrtime();
-    const data = await this.requestData(gemeindeSchluessel);
-    const [durationInSec] = process.hrtime(start);
-
-    const ort = data[0].Ort;
-    const netzbetreiberName = data[0].NetzbetreiberNamen;
-
-    const dataAtStart = this.calculateDataSetPerDate(
-      data, 
-      einwohnerzahl,
-      null,
-      // technical start date of wattbewerb
-      moment('2021-02-13T01:00:00+01:00'), 
-    )
-
-    return {
-      ort,
-      netzbetreiberName,
-      gemeindeSchluessel,
-      start: dataAtStart,
-      growth: [],
-      secs: durationInSec,
-    };
   }
 
 
