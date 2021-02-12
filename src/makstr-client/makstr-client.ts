@@ -38,7 +38,7 @@ export class MakstrClient {
 
   constructor(private readonly pageSize = 5000) {}
 
-  async query<T>(filterQuery: Record<string, string>): Promise<T[]> {
+  async query<T>(filterQuery: Record<string, any>): Promise<T[]> {
     const filter = this.querifyId(filterQuery, '~and~', '~eq~');
 
     const queryObject = {
@@ -65,7 +65,7 @@ export class MakstrClient {
     return data;
   }
 
-  async extendedQuery<T>(filterQuery: Record<string, string>): Promise<T[]> {
+  async extendedQuery<T>(filterQuery: Record<string, any>): Promise<T[]> {
     const filter = this.querifyId(filterQuery, '~and~', '~eq~');
 
     const queryObject = {
